@@ -1,6 +1,6 @@
 <!doctype html>
 
-<title>News</title>
+<title>today's Arxiv AI news</title>
 
 
 <body>
@@ -10,8 +10,7 @@
     <li>
       <h2>{{article.title}}</h2>
       <p>{{article.summary}}</p>
-      <p>{{article.link}}</p>
-      <p>{{article.updated}}</p>
+      <a href="{{article.link}}">read more</a>
     </li>
     {% endfor %}
   </ul>

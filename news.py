@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-import urllib
+from urllib.request import urlopen
 import feedparser
 from datetime import datetime, timedelta
 
@@ -23,7 +23,7 @@ def get_news():
   base_url = 'http://export.arxiv.org/api/query?'
   # TODO : use a generator that returns once the articles is too old
   query = f"search_query={PREFIX}:{CATEGORY}&max_results={MAX_RESULT}&sortBy={SORTING}&sortOrder=descending&output=json" 
-  response = urllib.request.urlopen(base_url + query).read() 
+  response = urlopen(base_url + query).read() 
   feed = feedparser.parse(response)
   articles = [entry for entry in feed.entries if is_ai(entry)] 
   return render_template('news.html', title="News", articles = articles)
@@ -31,7 +31,3 @@ def get_news():
 
 if __name__ == "__main__":
   app.run(port=5000, debug=True)
-
-
-
-
