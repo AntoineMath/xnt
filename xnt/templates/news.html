@@ -8,9 +8,9 @@
   <ul>
     {% for article in articles: %}
     <li>
-      <h2>{{article.title}}</h2>
-      <p>{{article.summary}}</p>
-      <a href="{{article.link}}">read more</a>
+      <h2>{{article['title']}}</h2>
+      <p>{{article['summary']}}</p>
+      <a href={{article['link']}}>read more</a>
     </li>
     {% endfor %}
   </ul>
