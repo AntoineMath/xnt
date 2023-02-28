@@ -1,3 +1,9 @@
+*egg/
+*egg-info/
+__pycache__/
+errors.txt
+logs.txt
+*.egg
 .venv/
 .vscode/
-__pycache__/
+

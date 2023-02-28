@@ -26,4 +26,4 @@ osearch = OpenSearch(
     ca_certs = app.config['CA_CERTS_PATH']
 )
 
-import xnt.views, xnt.article
+import xnt.views, xnt.paper

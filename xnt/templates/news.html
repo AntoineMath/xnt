@@ -6,11 +6,11 @@
 <body>
   <h1>Today's Arxiv AI news</h1>
   <ul>
-    {% for article in articles: %}
+    {% for paper in papers: %}
     <li>
-      <h2>{{article['title']}}</h2>
-      <p>{{article['summary']}}</p>
-      <a href={{article['link']}}>read more</a>
+      <h2>{{paper['title']}}</h2>
+      <p>{{paper['summary']}}</p>
+      <a href={{paper['link']}}>read more</a>
     </li>
     {% endfor %}
   </ul>

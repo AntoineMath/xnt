@@ -6,7 +6,7 @@ from urllib.request import urlopen
 import feedparser
 from datetime import datetime, timedelta
 from xnt import app, osearch 
-from xnt.article import Article
+from xnt.paper import Paper
 
 INDEX = app.config['INDEX']
 GPT3_ACTIVATED = False
@@ -26,7 +26,7 @@ def is_ai(entry):
 @app.route('/')
 def news():
   # TODO : search with date and display GPT3 summarization
-  articles = [a['_source'] for a in osearch.search(index=INDEX)['hits']['hits']]
-  return render_template('news.html', title="News", articles = articles)
+  papers = [a['_source'] for a in osearch.search(index=INDEX)['hits']['hits']]
+  return render_template('news.html', title="News", papers = papers)
     
 

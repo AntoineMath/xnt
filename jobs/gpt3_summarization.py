@@ -3,9 +3,10 @@ import openai
 import xnt
 from xnt import app, osearch
 INDEX = app.config['INDEX']
+SIZE = 30 # TODO: be smarter
 
 
-# TODO: batch process the unsummarized articles
+# TODO: batch process the unsummarized papers
 def summarize(text):
   response = openai.Completion.create(
     model="text-davinci-003",
@@ -18,25 +19,23 @@ def summarize(text):
   ) 
   return response
 
-async def main():
+async def summarize():
   async with aiohttp.ClientSession() as session:
     openai_api_url = ''
+
 def get_papers_wo_summary():
   query = {
-    'query': {
-      'bool': {
-        'must_not': {
-          'exists': {
-            'field': 'gpt3-summary'
+    "query": {
+      "bool": {
+        "must_not": {
+          "exists": {
+            "field": "gpt3-summary"
           }
         }
       }
     }
   }
-  return osearch.search(index=INDEX, body=query) 
+  osearch.search(index=INDEX, body=query, size = SIZE) 
 
 
 if __name__ == "__main__":
-  for p in get_papers_wo_summary()['hits']['hits']:
-    print(p['_source']['title'], '\n')
-  summarize("text")
