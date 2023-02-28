@@ -8,7 +8,7 @@ from datetime import datetime, timedelta
 from xnt import app, osearch 
 from xnt.article import Article
 
-INDEX = app.config['DEV_INDEX']
+INDEX = app.config['INDEX']
 GPT3_ACTIVATED = False
 SORTING = 'lastUpdatedDate'
 CATEGORY = 'cs.AI'
