@@ -1,0 +1,45 @@
+p {
+  text-align: left;
+  width: 80%;
+}
+
+.paper {
+  padding: 20px 5px 20px 5px;
+  font-family: 'Droid Serif', serif;
+}
+
+.abstract {
+
+  font-size: 16px
+}
+
+body {
+  font-family: 'Droid Serif', serif;
+  font-size: 14px;
+  color: #2f2f2f;
+  background-color: #f9f7f1;
+}
+
+.head {
+  text-align: center;
+  position: relative;
+}
+
+header {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 80px;
+  text-transform: uppercase;
+  display: inline-block;
+  line-height: 72px;
+  margin-bottom: 20px;
+}
+
+.subhead {
+  text-align: center;
+  text-transform: uppercase;
+  border-bottom: 2px solid #2f2f2f;
+  border-top: 2px solid #2f2f2f;
+  padding: 12px 0 12px 0;
+
+}

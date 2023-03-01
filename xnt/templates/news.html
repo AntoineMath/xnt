@@ -1,17 +1,28 @@
 <!doctype html>
 
-<title>today's Arxiv AI news</title>
+<head>
+  <title>Recent Arxiv AI news</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  <link
+    href='https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic|Droid+Serif:400,700,400italic,700italic'
+    rel='stylesheet' type='text/css'>
+  <meta name="viewport" content="width=device-width">
+</head>
 
 
 <body>
-  <h1>Today's Arxiv AI news</h1>
-  <ul>
+  <div class="head">
+    <header>Recent Arxiv AI news</header>
+    <div class="subhead"> Summarized by text-davinci-003 (gpt3)</div>
     {% for paper in papers: %}
-    <li>
-      <h2>{{paper['title']}}</h2>
-      <p>{{paper['summary']}}</p>
-      <a href={{paper['link']}}>read more</a>
-    </li>
-    {% endfor %}
-  </ul>
+  </div>
+  </div>
+  <div class="paper">
+    <h2>{{paper['title']}}</h2>
+    <p class="abstract">{{paper['abstract-summary']['text']}}</p>
+    <p>🤖 sumup cost: <b>{{ "%.3f" | format(paper['abstract-summary']['cost']['tot_cost']) }} $</b></p>
+    <p>category: {{paper['category']}}</p>
+    <a href={{paper['link']}}>read more</a>
+  </div>
+  {% endfor %}
 </body>
