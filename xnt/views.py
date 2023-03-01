@@ -20,6 +20,10 @@ def is_ai(entry):
 @app.route('/')
 def news():
   # TODO : search with date and display GPT3 summarization
+  time=request.args.get("time")
   papers = [p['_source'] for p in osearch.search(index=INDEX)['hits']['hits']]
-  return render_template('news.html', title="News", papers = papers)
+  return render_template('news.html',
+                         title="News",
+                         papers = papers,
+                         time=time)
     

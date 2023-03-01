@@ -1,28 +1,42 @@
-<!doctype html>
+<html>
 
 <head>
-  <title>Recent Arxiv AI news</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
   <link
     href='https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic|Droid+Serif:400,700,400italic,700italic'
     rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  <title>XNT</title>
   <meta name="viewport" content="width=device-width">
-</head>
 
+</head>
 
 <body>
   <div class="head">
-    <header>Recent Arxiv AI news</header>
-    <div class="subhead"> Summarized by text-davinci-003 (gpt3)</div>
-    {% for paper in papers: %}
+    <div class="headerobjectswrapper">
+      <div class="weatherforcastbox"><span style="font-style: italic;">Weatherforcast for the next 24 hours: Plenty of
+          Sunshine</span><br><span>Wind: 7km/h SSE; Ther: 21°C; Hum: 82%</span></div>
+      <header>AI research news</header>
+    </div>
+
+    <div class="subheadwrapper">
+      <div class="subhead">{{time}}</div>
+      <div class="price"></div>
+    </div>
   </div>
+  <div class="content">
+    <div class="collumns">
+      {% for paper in papers: %}
+      <div class="collumn">
+        <div class="head"><span class="headline hl3">{{paper['title']}}</span>
+          <p><span class="headline hl4">by gpt3</span></p>
+        </div>
+        {{paper['abstract-summary']['text']}}
+      </div>
+
+      {% endfor %}
+    </div>
   </div>
-  <div class="paper">
-    <h2>{{paper['title']}}</h2>
-    <p class="abstract">{{paper['abstract-summary']['text']}}</p>
-    <p>🤖 sumup cost: <b>{{ "%.3f" | format(paper['abstract-summary']['cost']['tot_cost']) }} $</b></p>
-    <p>category: {{paper['category']}}</p>
-    <a href={{paper['link']}}>read more</a>
-  </div>
-  {% endfor %}
+
 </body>
+
+</html>
