@@ -12,3 +12,7 @@ def list_to_timestamp(list):
 
 def tot_hits(response) -> int:
   return int(response['hits']['total']['value'])
+
+# TODO : test
+def summaries_from_response(response) -> list[dict]:
+  return [a['summary'] for a in response['hits']['hits']]

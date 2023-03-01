@@ -1,12 +1,6 @@
-import os 
-import json 
-import openai 
-from flask import render_template 
-from urllib.request import urlopen
-import feedparser
+from flask import render_template , request
 from datetime import datetime, timedelta
 from xnt import app, osearch 
-from xnt.paper import Paper
 
 INDEX = app.config['INDEX']
 GPT3_ACTIVATED = False
@@ -26,7 +20,6 @@ def is_ai(entry):
 @app.route('/')
 def news():
   # TODO : search with date and display GPT3 summarization
-  papers = [a['_source'] for a in osearch.search(index=INDEX)['hits']['hits']]
+  papers = [p['_source'] for p in osearch.search(index=INDEX)['hits']['hits']]
   return render_template('news.html', title="News", papers = papers)
     
-
