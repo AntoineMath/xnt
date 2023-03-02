@@ -13,7 +13,7 @@ from xnt.utils import str_to_datetime
 INDEX = app.config['INDEX']
 CATEGORIES = ['cs.AI']
 BS = 10
-MAX_QUERIES = 5 # for safety (we look at the 10x5 last papers in cs category)
+MAX_QUERIES = 10 # for safety (we look at the 10x5 last papers in cs category)
 
 def import_new_arxiv_papers():
 
@@ -35,7 +35,7 @@ def import_new_arxiv_papers():
     feed = feedparser.parse(response)
     papers = [Paper(json.loads(json.dumps(entry))) for entry in feed.entries] 
     for p in papers:
-      if last_updated_date is not None and p.updated_datetime >= last_updated_date:
+      if last_updated_date is not None and p.updated_datetime <= last_updated_date:
         break
       if p.category in CATEGORIES:
         papers_to_save.append(
