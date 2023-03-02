@@ -1,6 +1,7 @@
 from flask import render_template , request
 from datetime import datetime, timedelta
 from xnt import app, osearch 
+from datetime import datetime
 
 INDEX = app.config['INDEX']
 GPT3_ACTIVATED = False
@@ -20,10 +21,12 @@ def is_ai(entry):
 @app.route('/')
 def news():
   # TODO : search with date and display GPT3 summarization
-  time=request.args.get("time")
+  date = datetime.now().strftime("%A, %B %w %Y")
   papers = [p['_source'] for p in osearch.search(index=INDEX)['hits']['hits']]
+  tot_cost = sum([p['abstract-summary']['cost']['tot_cost'] for p in papers])
   return render_template('news.html',
                          title="News",
                          papers = papers,
-                         time=time)
+                         tot_cost = tot_cost,
+                         date = date)
     
