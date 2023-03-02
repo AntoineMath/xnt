@@ -5,7 +5,7 @@ from xnt.gpt3_completion import GPT3_response
 
 INDEX = app.config['INDEX']
 SIZE = 30 # TODO: be smarter
-SUM_FIELD = "gpt3-summary"
+SUM_FIELD = "abstract-summary"
 GPT3_MODEL = "text-davinci-003"
 
 # TODO: batch process the unsummarized papers
@@ -29,11 +29,18 @@ def get_papers_wo_summary() -> list[dict]:
   query = {
     "query": {
       "bool": {
-        "must_not": {
-          "exists": {
-            "field": SUM_FIELD
+        "must_not": [
+          {
+            "nested": {
+              "path": "abstract-summary",
+              "query": {
+                "exists": {
+                  "field": "abstract-summary"
+                }
+              }
+            }
           }
-        }
+        ]
       }
     }
   }
