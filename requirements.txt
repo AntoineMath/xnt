@@ -6,3 +6,5 @@ Jinja2==3.1.2
 MarkupSafe==2.1.2
 sgmllib3k==1.0.0
 Werkzeug==2.2.3
+opensearch-py
+openai

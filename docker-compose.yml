@@ -1,9 +1,23 @@
 version: 3.11.2
 services:
   xnt:
+    environment:
+      - OPENAI_API_KEY
+      - CA_CERTS_PATH
+      - DEV_OSEARCH_HOST
+      - DEV_OSEARCH_PORT
+      - DEV_OSEARCH_INDEX
+      - DEV_OSEARCH_USERNAME
+      - DEV_OSEARCH_PASSWORD
+
     build: .
     ports:
-      - "8000:5001"
+      - "5001:5001"
+    depends_on:
+        - opensearch-node1
+        - opensearch-node2
+        
+        
   opensearch-node1:
     # This is also the hostname of the container within the Docker network (i.e. https://opensearch-node1/)
     image: opensearchproject/opensearch:latest # Specifying the latest available image - modify if you want a specific version
